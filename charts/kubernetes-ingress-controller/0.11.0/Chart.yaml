@@ -1,0 +1,21 @@
+apiVersion: v2
+appVersion: 0.9.0
+dependencies:
+- name: common
+  repository: https://charts.bitnami.com/bitnami
+  tags:
+  - bitnami-common
+  version: 2.x.x
+description: A Kubernetes ingress controller built using ngrok.
+home: https://ngrok.com
+icon: https://ngrok.com/static/img/brand/ngrok-favicon.svg
+keywords:
+- ngrok
+- networking
+- ingress
+- edge
+- api gateway
+name: kubernetes-ingress-controller
+sources:
+- https://github.com/ngrok/kubernetes-ingress-controller
+version: 0.11.0
