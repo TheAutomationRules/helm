@@ -82,7 +82,7 @@ applications:
       - resources-finalizer.argocd.argoproj.io
     project: argoenv
     source:
-      repoURL: https://github.com/TheAutomationRules.git
+      repoURL: https://github.com/TheAutomationRules/helm.git
       targetRevision: main
       path: charts/argo-events/2.4.1
       helm:
