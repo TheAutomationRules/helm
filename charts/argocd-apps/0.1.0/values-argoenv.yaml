@@ -32,7 +32,7 @@ applications:
           - values-custom.yaml
     destination:
       server: https://kubernetes.default.svc
-      namespace: argocds
+      namespace: argocd
     syncPolicy:
       syncOptions:
         - Validate=false
