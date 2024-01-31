@@ -43,3 +43,32 @@ applications:
       - name: url
         value: https://github.com/TheAutomationRules/helm/blob/main/README.md
   # ------------------------------------------------------------------------------
+  - name: argo-workflows
+    namespace: argocd
+    additionalLabels: { }
+    additionalAnnotations:
+    #argocd.argoproj.io/sync-wave: "0"
+
+    finalizers:
+      - resources-finalizer.argocd.argoproj.io
+    project: argoenv
+    source:
+      repoURL: https://github.com/TheAutomationRules/helm.git
+      targetRevision: main
+      path: charts/argo-workflows/0.33.3
+      helm:
+        valueFiles:
+          - values-custom.yaml
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: argo
+    syncPolicy:
+      syncOptions:
+        - Validate=false
+        - CreateNamespace=true
+        - PrunePropagationPolicy=foreground
+        - PruneLast=true
+    info:
+      - name: url
+        value: https://github.com/TheAutomationRules/helm/blob/main/README.md
+  # ------------------------------------------------------------------------------
