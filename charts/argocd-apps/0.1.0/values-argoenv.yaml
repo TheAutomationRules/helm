@@ -72,3 +72,32 @@ applications:
       - name: url
         value: https://github.com/TheAutomationRules/helm/blob/main/README.md
   # ------------------------------------------------------------------------------
+  - name: argo-events
+    namespace: argocd
+    additionalLabels: { }
+    additionalAnnotations:
+    #argocd.argoproj.io/sync-wave: "0"
+
+    finalizers:
+      - resources-finalizer.argocd.argoproj.io
+    project: argoenv
+    source:
+      repoURL: https://github.com/TheAutomationRules.git
+      targetRevision: main
+      path: charts/argo-events/2.4.1
+      helm:
+        valueFiles:
+          - values-custom.yaml
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: argo-events
+    syncPolicy:
+      syncOptions:
+        - Validate=false
+        - CreateNamespace=true
+        - PrunePropagationPolicy=foreground
+        - PruneLast=true
+    info:
+      - name: url
+        value: https://github.com/TheAutomationRules/blob/main/README.md
+  # ------------------------------------------------------------------------------
