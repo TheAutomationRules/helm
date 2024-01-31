@@ -26,13 +26,13 @@ applications:
     source:
       repoURL: https://github.com/TheAutomationRules/helm.git
       targetRevision: main
-      path: helm/charts/argo-cd/5.51.6
+      path: charts/argo-cd/5.51.6
       helm:
         valueFiles:
           - values-custom.yaml
     destination:
       server: https://kubernetes.default.svc
-      namespace: argocd
+      namespace: argocds
     syncPolicy:
       syncOptions:
         - Validate=false
