@@ -1,0 +1,45 @@
+# ------------------------------------------------------------------------------
+# ARGOCD PROJECT CONFIGS
+# ------------------------------------------------------------------------------
+configs:
+
+  # NAMESPACES to be used
+  namespaces:
+#    - ingress-nginx
+#    - monitoring
+#    - testing
+
+# ------------------------------------------------------------------------------
+# APPLICATIONS
+# ------------------------------------------------------------------------------
+applications:
+# ------------------------------------------------------------------------------
+  - name: argo-cd
+    namespace: argocd
+    additionalLabels: { }
+    additionalAnnotations:
+    #argocd.argoproj.io/sync-wave: "0"
+
+    finalizers:
+      - resources-finalizer.argocd.argoproj.io
+    project: core
+    source:
+      repoURL: https://github.com/TheAutomationRules/helm.git
+      targetRevision: main
+      path: helm/charts/argo-cd/5.51.6
+      helm:
+        valueFiles:
+          - values-custom.yaml
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: argocd
+    syncPolicy:
+      syncOptions:
+        - Validate=false
+        - CreateNamespace=true
+        - PrunePropagationPolicy=foreground
+        - PruneLast=true
+    info:
+      - name: url
+        value: https://github.com/TheAutomationRules/helm/blob/main/README.md
+  # ------------------------------------------------------------------------------
