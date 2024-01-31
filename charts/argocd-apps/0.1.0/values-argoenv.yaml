@@ -22,7 +22,7 @@ applications:
 
     finalizers:
       - resources-finalizer.argocd.argoproj.io
-    project: core
+    project: argoenv
     source:
       repoURL: https://github.com/TheAutomationRules/helm.git
       targetRevision: main
