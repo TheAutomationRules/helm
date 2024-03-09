@@ -83,7 +83,7 @@ applications:
     project: argoenv
     source:
       repoURL: https://github.com/TheAutomationRules/helm.git
-      targetRevision: testing
+      targetRevision: main
       path: charts/minio/8.0.10
       helm:
         valueFiles:
